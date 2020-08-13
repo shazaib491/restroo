@@ -1,0 +1,97 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<section class="page_header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="text-uppercase">Shop Listing</h2>
+                <p>Tomato is a delicious restaurant website template</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="shop-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="single-shop-carousel">
+                    <div>
+                        <img class="img-responsive" src="{{ dish.img.url }}" alt="" style="height:400px">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img1.url}}" style="height: 400px;" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img2.url}}" style="height: 400px;" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img.url}}" style="height: 400px;" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img1.url}}" style="height: 400px;" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img2.url}}" style="height: 400px;" alt="">
+                    </div>
+                </div>
+                <div class="single-shop-carousel-nav">
+                    <div>
+                        <img class="img-responsive" src="{{dish.img.url}}" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img1.url}}" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img2.url}}" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img.url}}" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img1.url}}" alt="">
+                    </div>
+                    <div>
+                        <img class="img-responsive" src="{{dish.img2.url}}" alt="">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-md-6 shop-single-info">
+                <div class="shop-single-title">
+                    <h3 class="text-left">{{dish.title}}</h3>
+                </div>
+                <div class="shop-single-price">
+                    <div class="ssp pull-left">&#8377 <span>{{dish.price}}</span></div>
+                    <div class="rc-ratings pull-right">
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star active"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+                <p>{{dish.dis}}</p>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="quantity">
+                        <label for="">Quantity</label>
+                        <input type="number" min="1" max="5" name="qty" default="1" required placeholder="1">
+                        <button type="submit" class="btn btn-default pull-right">Add to Cart</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="tab-style3">
+
+
+
+
+
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+</section>
+
+{% endblock body %}

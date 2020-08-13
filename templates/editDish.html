@@ -1,0 +1,85 @@
+{% extends 'base2.html' %} {% load static %} {% block body %}
+<div class="row container">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h2>Dishes</h2>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>price</th>
+                    <th>available</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in dish %}
+                <tr>
+                    <th>{{i.title}}</th>
+                    <th>{{i.price}}</th>
+                    {% if i.avail %}
+                    <th>Available</th>
+                    {% else %}
+                    <th>Not available</th>
+                    {% endif %}
+
+                    <th>
+                        <form action="" method="POST">
+                            {% csrf_token %} {% if i.avail %}
+                            <button type="submit" class="btn btn-default btn-xs" name="unavail" value="{{i.id}}">unavailable</button> {% else %}
+                            <button type="submit" class="btn btn-success btn-xs" name="avail" value="{{i.id}}">Available</button> {% endif %}
+                            <button type="submit" class="btn btn-danger btn-xs" name="deleteDish" value="{{i.id}}">Delete</but>
+                        </form>
+                    </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <div class="page-header">
+            <h2>Add Dish</h2>
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <select name="cat" class="form-control">
+                    <option selected disabled value="">select your category</option>
+                    {% for i in cat  %}
+                      <option value="{{i.id}}">{{i.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" name="title" id="" class="form-control" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label for="">Mrp</label>
+                <input type="text" name="mrp" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Price</label>
+                <input type="text" name="price" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">image1</label>
+                <input type="file" name="img" id="">
+            </div>
+            <div class="form-group">
+                <label for="">image2</label>
+                <input type="file" name="img2" id="">
+            </div>
+            <div class="form-group">
+                <label for="">image3</label>
+                <input type="file" name="img3" id="">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="dis"></textarea>
+            </div>
+            <button type="submit" name="addDish" class="btn btn-primary">Submit</button>
+                        </form>
+    </div>
+</div>
+{% endblock body %}

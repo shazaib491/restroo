@@ -1,0 +1,96 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+<section class="page_header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="text-uppercase">Reservation</h2>
+                <p>Tomato is a delicious restaurant website template</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="reservation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header wow fadeInDown">
+                    <h1>Reservations<small>Book a table online. Leads will reach in your email.</small></h1>
+                </div>
+            </div>
+        </div>
+        <div class="reservation-form wow fadeInUp">
+
+            {% if success %}
+            <script>
+                swal({
+                    title: "WELCOME!",
+                    text: "We Will Contact You Soon!",
+                    icon: "success",
+                    button: "Close!",
+                });
+            </script>
+            {% endif %}
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="datepicker">Date</label>
+                            <input type="date" name="date" class="form-control" placeholder="Pick a date" title="Please choose a date" required>
+                            <i class="fa fa-calendar-o"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" title="Your Full Name please" required>
+                            <i class="fa fa-pencil-square-o"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="timepicker">Time</label>
+                            <input type="time" class="form-control" name="time" placeholder="Pick a time" title="Choose Preferred Time" required>
+                            <i class="fa fa-clock-o"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email ID" title="Please enter your email id" required>
+                            <i class="fa fa-envelope-o"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="guests">Guests</label>
+                            <input class="form-control" type="number" id="guests" name="guests" placeholder="How many of you?" title="Please enter number of guests" required>
+                            <i class="fa fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="mobile" placeholder="Enter your Phone Number" title="Please enter your phone number" required>
+                            <i class="fa fa-phone"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="reservation-btn">
+                            <button type="submit" name="reserve" class="btn btn-default btn-lg">Make
+                                Reservation</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="reservation-footer">
+            <p>You can also call: <strong>+1 224 6787 004</strong> to make a reservation.</p>
+            <span></span>
+        </div>
+    </div>
+</section>
+{% endblock body %}

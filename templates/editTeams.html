@@ -1,0 +1,84 @@
+{% extends 'base2.html' %} {% load static %} {% block body %}
+<div class="row ">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h2>Teams</h2>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>img</th>
+                    <th>name</th>
+                    <th>designation</th>
+                    <th>facebook</th>
+                    <th>instagram</th>
+                    <th>twitter</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in team %}
+                <tr>
+                    <th><img src="{{i.img.url}}" class="" style="width:100px;" /></th>
+                    <th>{{i.name}}</th>
+                    <th>{{i.designation}}</th>
+
+                    <th><a href="{{i.fb}}"><i class="fa fa-facebook text-info fa-2x"></i></a> </th>
+                    <th><a href="{{i.twt}}"><i class="fa fa-twitter fa-2x"></i></a> </th>
+                    <th><a href="{{i.insta}}"><i class="fa fa-instagram text-danger fa-2x"></i></a> </th>
+                    <th>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-xs" name="teamdel" value="{{i.id}}">Delete
+                                </but>
+                        </form>
+                    </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-5">
+        <div class="page-header">
+            <h2>Add Team</h2>
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags %}
+        <div class="alert alert-info {{ message.tags }}"><span>{{message}}</span>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" name="name" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Designation</label>
+                <input type="text" name="dest" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">facebook <i class="fa fa-facebook"></i></label>
+                <input type="text" name="fb" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Twitter <i class="fa fa-twitter"></i></label>
+                <input type="text" name="twt" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Instagram <i class="fa fa-instagram"></i></label>
+                <input type="text" name="insta" id="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">file <i class="fa fa-file"></i></label>
+                <input type="file" name="file" id="" class="form-control">
+            </div>
+            <button type="submit" name="addTeam" class="btn btn-default">Submit</button>
+
+                        </form>
+    </div>
+</div>
+{% endblock body %}
